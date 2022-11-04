@@ -30,7 +30,7 @@ export const FlickrSearch = () => {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
-            {results && <img alt="flickr" src={results[0].media['m']}/>}
+            {results && results.map((e: any) => <img alt="flickr" src={e.media['m']}/>)}
         </div>
     );
 }
