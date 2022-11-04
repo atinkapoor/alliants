@@ -1,3 +1,4 @@
+import axios from "axios";
 import { YouTubeSearchResult } from "./interfaces";
 
 export class YouTubeSearchService {
@@ -7,8 +8,8 @@ export class YouTubeSearchService {
             throw new Error('Youtube key not found!');
         }
         const encodedKeyword = encodeURIComponent(keyword);
-        const result = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&videoDuration=short&q=${encodedKeyword}&type=video&key=${this.youtubeKey}`)
-        const searchResult = await result.json();
+        const result = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&videoDuration=short&q=${encodedKeyword}&type=video&key=${this.youtubeKey}`)
+        const searchResult = await result.data;
         return searchResult;
     }
 }

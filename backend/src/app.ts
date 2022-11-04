@@ -17,7 +17,7 @@ const flickrService = new FlickrService();
 app.get('/youtube', async (req: Request, res: Response) => {
     const keyword = req.query.keyword
     if (!keyword) {
-        res.send('Please add a keyword to search for as a query param');
+        res.status(400).send({message: 'No keyword sent!'})
         return;
     }
     const result = await youtubeService.searchVideo(keyword as string);
@@ -31,7 +31,7 @@ app.get('/youtube', async (req: Request, res: Response) => {
 app.get('/flickr', async (req: Request, res: Response) => {
     const keyword = req.query.keyword
     if (!keyword) {
-        res.send('Please add a keyword to search for as a query param');
+        res.status(400).send({message: 'No keyword sent!'})
         return;
     }
     const result = await flickrService.searchFlickr(keyword as string);
